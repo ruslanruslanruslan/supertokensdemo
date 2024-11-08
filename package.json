@@ -14,8 +14,7 @@
         "next": "latest",
         "react": "^18",
         "react-dom": "^18",
-        "supertokens-auth-react": "latest",
-        "supertokens-node": "latest"
+        "supertokens-auth-react": "latest"
     },
     "devDependencies": {
         "@types/cookie": "^0.5.2",
