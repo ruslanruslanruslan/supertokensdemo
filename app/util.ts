@@ -29,31 +29,3 @@ async function verifyToken(token: string): Promise<JwtPayload> {
         });
     });
 }
-
-/**
- * A helper function to retrieve session details on the server side.
- *
- * NOTE: This function does not use the getSession function from the supertokens-node SDK
- * because getSession can update the access token. These updated tokens would not be
- * propagated to the client side, as request interceptors do not run on the server side.
- */
-export async function getSessionForSSR(cookies: Array<{ name: string; value: string }>): Promise<{
-    accessTokenPayload: JwtPayload | undefined;
-    hasToken: boolean;
-    error: Error | undefined;
-}> {
-    let accessToken = cookies.find((cookie) => cookie.name === "sAccessToken")?.value;
-    const hasToken = !!accessToken;
-    try {
-        if (accessToken) {
-            const decoded = await verifyToken(accessToken);
-            return { accessTokenPayload: decoded, hasToken, error: undefined };
-        }
-        return { accessTokenPayload: undefined, hasToken, error: undefined };
-    } catch (error) {
-        if (error instanceof JsonWebToken.TokenExpiredError) {
-            return { accessTokenPayload: undefined, hasToken, error: undefined };
-        }
-        return { accessTokenPayload: undefined, hasToken, error: error as Error };
-    }
-}
