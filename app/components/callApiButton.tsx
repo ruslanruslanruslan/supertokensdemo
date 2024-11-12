@@ -3,18 +3,17 @@
 import styles from "../page.module.css";
 
 import { appInfo } from "../config/appInfo";
-import Session from "supertokens-auth-react/recipe/session";
 
 export const CallAPIButton = () => {
     const fetchUserData = async () => {
-        const userInfoResponse = await Session.getUserId();
+        const userInfoResponse = await fetch(`${appInfo.apiDomain}/api/user`);
 
-        alert(await userInfoResponse);
+        alert(JSON.stringify(await userInfoResponse.json()));
     };
 
     return (
         <div onClick={fetchUserData} className={styles.sessionButton}>
-            Call SDK
+            Call API
         </div>
     );
 };
