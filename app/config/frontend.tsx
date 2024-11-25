@@ -1,8 +1,12 @@
 import EmailPasswordReact from "supertokens-auth-react/recipe/emailpassword";
+import ThirdPartyReact from "supertokens-auth-react/recipe/thirdparty";
+import PasswordlessReact from "supertokens-auth-react/recipe/passwordless";
 import Session from "supertokens-auth-react/recipe/session";
 import { appInfo } from "./appInfo";
 import { useRouter } from "next/navigation";
 import { SuperTokensConfig } from "supertokens-auth-react/lib/build/types";
+import { ThirdPartyPreBuiltUI } from "supertokens-auth-react/recipe/thirdparty/prebuiltui";
+import { PasswordlessPreBuiltUI } from "supertokens-auth-react/recipe/passwordless/prebuiltui";
 import { EmailPasswordPreBuiltUI } from "supertokens-auth-react/recipe/emailpassword/prebuiltui";
 
 const routerInfo: { router?: ReturnType<typeof useRouter>; pathName?: string } = {};
@@ -15,7 +19,20 @@ export function setRouter(router: ReturnType<typeof useRouter>, pathName: string
 export const frontendConfig = (): SuperTokensConfig => {
     return {
         appInfo,
-        recipeList: [EmailPasswordReact.init(), Session.init()],
+        recipeList: [
+            EmailPasswordReact.init(),
+            ThirdPartyReact.init({
+                signInAndUpFeature: {
+                    providers: [
+                        ThirdPartyReact.Google.init()
+                    ],
+                },
+            }),
+            PasswordlessReact.init({
+                contactMethod: "EMAIL_OR_PHONE",
+            }),
+            Session.init(),
+        ],
         windowHandler: (orig) => {
             return {
                 ...orig,
@@ -31,7 +48,7 @@ export const frontendConfig = (): SuperTokensConfig => {
 };
 
 export const recipeDetails = {
-    docsLink: "https://supertokens.com/docs/emailpassword/introduction",
+    docsLink: "https://supertokens.com/docs/thirdpartypasswordless/introduction",
 };
 
-export const PreBuiltUIList = [EmailPasswordPreBuiltUI];
+export const PreBuiltUIList = [EmailPasswordPreBuiltUI, ThirdPartyPreBuiltUI, PasswordlessPreBuiltUI];
