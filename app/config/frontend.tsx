@@ -24,7 +24,9 @@ export const frontendConfig = (): SuperTokensConfig => {
             ThirdPartyReact.init({
                 signInAndUpFeature: {
                     providers: [
-                        ThirdPartyReact.Google.init()
+                        ThirdPartyReact.Google.init(),
+                        ThirdPartyReact.Discord.init(),
+                        ThirdPartyReact.Facebook.init()
                     ],
                 },
             }),
