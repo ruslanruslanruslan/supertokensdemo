@@ -2,7 +2,6 @@ import EmailPasswordReact from "supertokens-auth-react/recipe/emailpassword";
 import ThirdPartyReact from "supertokens-auth-react/recipe/thirdparty";
 import PasswordlessReact from "supertokens-auth-react/recipe/passwordless";
 import Session from "supertokens-auth-react/recipe/session";
-import { appInfo } from "./appInfo";
 import { useRouter } from "next/navigation";
 import { SuperTokensConfig } from "supertokens-auth-react/lib/build/types";
 import { ThirdPartyPreBuiltUI } from "supertokens-auth-react/recipe/thirdparty/prebuiltui";
@@ -18,7 +17,12 @@ export function setRouter(router: ReturnType<typeof useRouter>, pathName: string
 
 export const frontendConfig = (): SuperTokensConfig => {
     return {
-        appInfo,
+        appInfo : {
+            appName: "docway",
+            apiDomain: `${process.env.NEXT_PUBLIC_API_URL}`,
+            websiteDomain: `${process.env.NEXT_PUBLIC_AMS_URL}`,
+            apiBasePath: "/api/auth",
+            websiteBasePath: "/auth"},
         recipeList: [
             EmailPasswordReact.init(),
             ThirdPartyReact.init({
