@@ -7,7 +7,7 @@ import { CelebrateIcon, SeparatorLine } from "../../assets/images";
 import { CallAPIButton } from "./callApiButton";
 import { LinksComponent } from "./linksComponent";
 import { SessionAuthForNextJS } from "./sessionAuthForNextJS";
-import { getSessionForSSR } from "../util";
+import { getSessionForSSR } from "../utils/supertokens";
 
 export async function HomePage() {
     const cookiesFromReq = await cookies();
