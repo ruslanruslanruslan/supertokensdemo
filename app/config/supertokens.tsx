@@ -1,6 +1,7 @@
 import EmailPasswordReact from "supertokens-auth-react/recipe/emailpassword";
 import ThirdPartyReact from "supertokens-auth-react/recipe/thirdparty";
 import PasswordlessReact from "supertokens-auth-react/recipe/passwordless";
+import EmailVerification from "supertokens-auth-react/recipe/emailverification";
 import Session from "supertokens-auth-react/recipe/session";
 import { useRouter } from "next/navigation";
 import { SuperTokensConfig } from "supertokens-auth-react/lib/build/types";
@@ -59,4 +60,4 @@ export const recipeDetails = {
     docsLink: "https://supertokens.com/docs/thirdpartypasswordless/introduction",
 };
 
-export const PreBuiltUIList = [EmailPasswordPreBuiltUI, ThirdPartyPreBuiltUI, PasswordlessPreBuiltUI];
+export const PreBuiltUIList = [EmailVerificationPreBuiltUI, EmailPasswordPreBuiltUI, ThirdPartyPreBuiltUI, PasswordlessPreBuiltUI];
