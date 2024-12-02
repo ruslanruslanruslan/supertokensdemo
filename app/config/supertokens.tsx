@@ -7,6 +7,7 @@ import { SuperTokensConfig } from "supertokens-auth-react/lib/build/types";
 import { ThirdPartyPreBuiltUI } from "supertokens-auth-react/recipe/thirdparty/prebuiltui";
 import { PasswordlessPreBuiltUI } from "supertokens-auth-react/recipe/passwordless/prebuiltui";
 import { EmailPasswordPreBuiltUI } from "supertokens-auth-react/recipe/emailpassword/prebuiltui";
+import {EmailVerificationPreBuiltUI} from "supertokens-auth-react/recipe/emailverification/prebuiltui";
 
 const routerInfo: { router?: ReturnType<typeof useRouter>; pathName?: string } = {};
 
@@ -19,11 +20,12 @@ export const frontendConfig = (): SuperTokensConfig => {
     return {
         appInfo : {
             appName: "docway",
-            apiDomain: `${process.env.NEXT_PUBLIC_API_URL}`,
-            websiteDomain: `${process.env.NEXT_PUBLIC_AMS_URL}`,
+            apiDomain: `${process.env.NEXT_PUBLIC_AUTH_URL}`,
+            websiteDomain: `${process.env.NEXT_PUBLIC_APP_URL}`,
             apiBasePath: "/api/auth",
             websiteBasePath: "/auth"},
         recipeList: [
+            EmailVerification.init({mode: "REQUIRED"}),
             EmailPasswordReact.init(),
             ThirdPartyReact.init({
                 signInAndUpFeature: {

@@ -3,7 +3,7 @@ import type { JwtHeader, JwtPayload, SigningKeyCallback } from "jsonwebtoken";
 import jwksClient from "jwks-rsa";
 
 const client = jwksClient({
-    jwksUri: `${process.env.NEXT_PUBLIC_API_URL}/api/auth/jwt/jwks.json`,
+    jwksUri: `${process.env.NEXT_PUBLIC_AUTH_URL}/api/auth/jwt/jwks.json`,
 });
 
 async function verifyToken(token: string): Promise<JwtPayload> {
