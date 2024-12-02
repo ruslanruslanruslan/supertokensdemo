@@ -4,6 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "next dev --experimental-https -H local.ibragimov.pw -p 3000",
+        "local": "next dev -H local.ibragimov.pw -p 3000",
         "build": "next build",
         "start": "next start",
         "lint": "next lint"
